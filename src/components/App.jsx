@@ -13,6 +13,8 @@ class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
+    name: '',
+    number: '',
   };
 
   hendelChange = e => {
@@ -42,7 +44,12 @@ class App extends Component {
     }
 
     this.addContact(newContact);
+    this.reset();
   };
+
+  reset() {
+    this.setState({ name: '', number: '' });
+  }
 
   addContact = newContact => {
     this.setState(prevState => ({
@@ -72,6 +79,7 @@ class App extends Component {
     return (
       <>
         <AddForm
+          state={this.state}
           hendelChange={this.hendelChange}
           hendelSubmit={this.hendelSubmit}
         />
