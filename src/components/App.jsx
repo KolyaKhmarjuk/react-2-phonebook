@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import AddForm from './AddForm';
-import FilterContact from './FilterContact';
-import ContactsBook from './ContactsBook';
+import AddForm from './AddForm/AddForm';
+import FilterContact from './FilterContact/FilterContact';
+import ContactsBook from './ContactsBook/ContactsBook';
 
 class App extends Component {
   state = {
@@ -31,6 +31,15 @@ class App extends Component {
       name: name,
       number: number,
     };
+
+    const nameCheck = this.state.contacts.some(contact =>
+      contact.name.includes(this.state.name)
+    );
+
+    if (nameCheck) {
+      alert(`${this.state.name} is already in contacts`);
+      return;
+    }
 
     this.addContact(newContact);
   };
